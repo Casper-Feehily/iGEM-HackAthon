@@ -13,17 +13,58 @@
   <body
     x-data="{ sections: [
       {
-        title: 'MyTitle',
+        title: 'Reflecting on Design Decisions',
         questions: [
-          { text: 'q1 foo bar', answer: null },
-          { text: 'q2', answer: null },
+          { text: 'The team had opportunities to reflect on the social responsibility of the project at every stage.', answer: null },
+          { text: 'Specific examples exist of how reflection improved the project’s design.', answer: null },
+          { text: 'The team critically evaluated the effectiveness of human practices integration.', answer: null },
+          { text: 'Ethical issues or potential risks were considered at every stage of the project.', answer: null },
+          { text: 'Human practices goals were clearly defined and aligned with the project objectives from the beginning.', answer: null },
         ],
       },
       {
-        title: 'Section 2',
+        title: 'Exploring and Reflecting on Context Beyond the Lab',
         questions: [
-          { text: 'Do you enjoy working in teams?', answer: null },
-          { text: 'How do you feel about social interactions?', answer: null },
+          { text: 'Responsibility considerations were introduced early in the project.', answer: null },
+          { text: 'Formal assessments or research on social, environmental, and ethical impacts were conducted.', answer: null },
+          { text: 'The potential long-term social, environmental, or economic impacts of the project were assessed.', answer: null },
+          { text: 'Mechanisms for ensuring responsibility were regularly updated throughout the project.', answer: null },
+        ],
+      },
+      {
+        title: 'Incorporating Diverse Perspectives',
+        questions: [
+          { text: 'The project engaged with a diverse range of stakeholders.', answer: null },
+          { text: 'Relevant stakeholders were identified, and their feedback was deemed valuable for the project.', answer: null },
+          { text: 'Interactions with stakeholders were documented, and their feedback was incorporated.', answer: null },
+          { text: 'The project significantly evolved based on feedback from external stakeholders or communities.', answer: null },
+        ],
+      },
+      {
+        title: 'Anticipating Positive and Negative Impacts',
+        questions: [
+          { text: 'The project has clear components that positively impact society or the environment.', answer: null },
+          { text: 'The project design effectively promotes the values iGEM stands for.', answer: null },
+          { text: 'Potential negative impacts were identified and strategies developed to mitigate them.', answer: null },
+          { text: 'The broader implications of the project were thoroughly analyzed.', answer: null },
+        ],
+      },
+      {
+        title: 'Responding to Human Practices Work',
+        questions: [
+          { text: 'The team responded flexibly to changes based on feedback.', answer: null },
+          { text: 'Feedback led to specific improvements in the project.', answer: null },
+          { text: 'Creative or innovative approaches to ensuring responsibility were introduced.', answer: null },
+          { text: 'Ongoing mechanisms for ensuring social impact during design and execution are in place.', answer: null },
+        ],
+      },
+      {
+        title: 'Approaching Limitations with Integrity',
+        questions: [
+          { text: 'The team critically evaluated the limitations of their human practices approach.', answer: null },
+          { text: 'Gaps or limitations in human practices integration were addressed effectively.', answer: null },
+          { text: 'Human Practices activities can serve as a clear model for future teams.', answer: null },
+          { text: 'The impact of references on project design and execution is clearly demonstrated.', answer: null },
         ],
       },
     ]}"
@@ -40,6 +81,13 @@
                 x-bind:class="question.answer === -1 ? 'active' : ''"
                 @click="question.answer = -1"
               >
+                Strongly disagree
+              </button>
+              <button
+                class="btn"
+                x-bind:class="question.answer === -0.5 ? 'active' : ''"
+                @click="question.answer = -0.5"
+              >
                 Disagree
               </button>
               <button
@@ -51,10 +99,17 @@
               </button>
               <button
                 class="btn"
+                x-bind:class="question.answer === 0.5 ? 'active' : ''"
+                @click="question.answer = 0.5"
+              >
+                Agree
+              </button>
+              <button
+                class="btn"
                 x-bind:class="question.answer === 1 ? 'active' : ''"
                 @click="question.answer = 1"
               >
-                Agree
+                Strongly agree
               </button>
             </div>
           </div>
