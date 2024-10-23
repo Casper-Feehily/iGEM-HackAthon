@@ -4,31 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Human Practices Maturity Model Toolkit</title>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
-  <body>
-    <template id="question-radio">
-      <h2 class="question"></h2>
-      <p class="details"></p>
+  <body
+    x-data="{ sections: [
+			{
+				title: 'MyTitle',
+				questions: ['q1', 'q2'],
+			},
+			{
+				title: 'MyTitle2',
+				questions: ['q3', 'q4'],
+			},
+		]}"
+  >
+    <template x-for="section in sections">
+      <div>
+        <h2 x-text="section.title"></h2>
+        <template x-for="question in section.questions">
+          <div>
+            <p x-text="question"></p>
+          </div>
+        </template>
+      </div>
     </template>
 
     <div id="content"></div>
-    <script>
-      const data = [
-        { question: "foo bar", details: "lorem ipsum dolor amset" },
-      ];
-      const template = document.getElementById("question-radio");
-      const attachPoint = document.getElementById("content");
-      const nodes = data.map((item) => {
-        const clone = template.content.cloneNode(true);
-        clone.querySelector(".question").textContent = item.question;
-        clone.querySelector(".details").textContent = item.details;
-        return clone;
-      });
-      nodes.forEach((node) => {
-        attachPoint.appendChild(node);
-      });
-    </script>
-
-    <p>hello world</p>
   </body>
 </html>
