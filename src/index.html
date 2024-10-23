@@ -1,11 +1,34 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Human Practices Maturity Model Toolkit</title>
-	</head>
-	<body>
-		<p>hello world</p>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Human Practices Maturity Model Toolkit</title>
+  </head>
+  <body>
+    <template id="question-radio">
+      <h2 class="question"></h2>
+      <p class="details"></p>
+    </template>
+
+    <div id="content"></div>
+    <script>
+      const data = [
+        { question: "foo bar", details: "lorem ipsum dolor amset" },
+      ];
+      const template = document.getElementById("question-radio");
+      const attachPoint = document.getElementById("content");
+      const nodes = data.map((item) => {
+        const clone = template.content.cloneNode(true);
+        clone.querySelector(".question").textContent = item.question;
+        clone.querySelector(".details").textContent = item.details;
+        return clone;
+      });
+      nodes.forEach((node) => {
+        attachPoint.appendChild(node);
+      });
+    </script>
+
+    <p>hello world</p>
+  </body>
 </html>
