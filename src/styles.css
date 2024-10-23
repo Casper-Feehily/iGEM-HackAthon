@@ -1,0 +1,48 @@
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f4f4f4;
+}
+.container {
+	text-align: center;
+}
+.question {
+	font-size: 1.5em;
+	margin-bottom: 20px;
+}
+.question-group {
+	margin-bottom: 40px;
+}
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+.btn {
+	padding: 15px 30px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+.btn:hover {
+	border-color: #888;
+}
+/* Styling for active buttons */
+.btn.active {
+	background-color: #4CAF50;
+	color: white;
+	border-color: #4CAF50;
+}
+
+/* Ensure only one button in the same group can be active */
+.buttons .btn.active ~ .btn.active {
+	background-color: #fff;
+	color: black;
+	border-color: #ccc;
+}
+
