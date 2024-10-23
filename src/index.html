@@ -12,21 +12,21 @@
   </head>
   <body
     x-data="{ sections: [
-			{
-				title: 'MyTitle',
-				questions: [
-					{ text: 'q1 foo bar', answer: null },
-					{ text: 'q2', answer: null },
-		],
-			},
-			{
-				title: 'Section 2',
-				questions: [
-					{ text: 'Do you enjoy working in teams?', answer: null },
-					{ text: 'How do you feel about social interactions?', answer: null },
-		],
-			},
-		]}"
+      {
+        title: 'MyTitle',
+        questions: [
+          { text: 'q1 foo bar', answer: null },
+          { text: 'q2', answer: null },
+        ],
+      },
+      {
+        title: 'Section 2',
+        questions: [
+          { text: 'Do you enjoy working in teams?', answer: null },
+          { text: 'How do you feel about social interactions?', answer: null },
+        ],
+      },
+    ]}"
   >
     <template x-for="section in sections">
       <div>
