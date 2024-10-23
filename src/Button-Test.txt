@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Test Buttons</title>
+	<script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .question-group {
+            margin-bottom: 40px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            border-color: #888;
+        }
+        /* Styling for active buttons */
+        .btn.active {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        /* Ensure only one button in the same group can be active */
+        .buttons .btn.active ~ .btn.active {
+            background-color: #fff;
+            color: black;
+            border-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- First Question -->
+    <div class="question-group">
+        <div class="question">
+            How do you feel about social interactions?
+        </div>
+        <div class="buttons" data-question="1">
+            <div class="btn" onclick="selectButton(this)">Disagree</div>
+            <div class="btn" onclick="selectButton(this)">Neutral</div>
+            <div class="btn" onclick="selectButton(this)">Agree</div>
+        </div>
+    </div>
+
+    <!-- Second Question -->
+    <div class="question-group">
+        <div class="question">
+            Do you enjoy working in teams?
+        </div>
+        <div class="buttons" data-question="2">
+            <div class="btn" onclick="selectButton(this)">Disagree</div>
+            <div class="btn" onclick="selectButton(this)">Neutral</div>
+            <div class="btn" onclick="selectButton(this)">Agree</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function selectButton(button) {
+        // Find the parent button group
+        const buttonGroup = button.parentElement;
+
+        // Remove the 'active' class from all buttons in this group
+        buttonGroup.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+
+        // Add the 'active' class to the clicked button
+        button.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
