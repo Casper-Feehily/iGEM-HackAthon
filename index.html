@@ -15,12 +15,17 @@
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.data("bodyData", () => ({
-          setAnswer: function (section, question, value) {
-            section.total += value - question.answer;
-            question.answer = value;
-            // Update the graph dynamically after setting an answer
-            this.updateGraph();
-          },
+            setAnswer: function (section, question, value) {
+                // 计算总分
+                section.total += value - question.answer;
+                question.answer = value;
+                // 为当前点击的按钮添加 active 类
+                const clickedButton = event.target;
+                clickedButton.classList.add('active');
+
+                // 更新图表
+                this.updateGraph();
+            },
           sections: {
             reflectingOnDesign: {
               title: "Reflecting on Design Decisions",
@@ -249,42 +254,62 @@
             <div class="question-group">
               <p class="question" x-text="question.text"></p>
               <div class="buttons">
-                <button
-                  class="btn strongly-disagree"
-                  x-bind:class="question.answer === -1 ? 'active' : ''"
-                  @click="setAnswer(section, question, -1)"
-                >
-                  Strongly disagree
-                </button>
-                <button
-                  class="btn disagree"
-                  x-bind:class="question.answer === -0.5 ? 'active' : ''"
-                  @click="setAnswer(section, question, -0.5)"
-                >
-                  Disagree
-                </button>
-                <button
-                  class="btn neutral"
-                  x-bind:class="question.answer === 0 ? 'active' : ''"
-                  @click="setAnswer(section, question, 0)"
-                >
-                  Neutral
-                </button>
-                <button
-                  class="btn agree"
-                  x-bind:class="question.answer === 0.5 ? 'active' : ''"
-                  @click="setAnswer(section, question, 0.5)"
-                >
-                  Agree
-                </button>
-                <button
-                  class="btn strongly-agree"
-                  x-bind:class="question.answer === 1 ? 'active' : ''"
-                  @click="setAnswer(section, question, 1)"
-                >
-                  Strongly agree
-                </button>
+                  <button
+                          class="btn strongly-disagree"
+                          onclick="handleButtonClick(this)"
+                          x-bind:class="question.answer === -1 ? 'active' : ''"
+                          @click="setAnswer(section, question, -1)"
+                  >
+                      Strongly disagree
+                  </button>
+                  <button
+                          class="btn disagree"
+                          onclick="handleButtonClick(this)"
+                          x-bind:class="question.answer === -0.5 ? 'active' : ''"
+                          @click="setAnswer(section, question, -0.5)"
+                  >
+                      Disagree
+                  </button>
+                  <button
+                          class="btn neutral"
+                          onclick="handleButtonClick(this)"
+                          x-bind:class="question.answer === 0 ? 'active' : ''"
+                          @click="setAnswer(section, question, 0)"
+                  >
+                      Neutral
+                  </button>
+                  <button
+                          class="btn agree"
+                          onclick="handleButtonClick(this)"
+                          x-bind:class="question.answer === 0.5 ? 'active' : ''"
+                          @click="setAnswer(section, question, 0.5)"
+                  >
+                      Agree
+                  </button>
+                  <button
+                          class="btn strongly-agree"
+                          onclick="handleButtonClick(this)"
+                          x-bind:class="question.answer === 1 ? 'active' : ''"
+                          @click="setAnswer(section, question, 1)"
+                  >
+                      Strongly agree
+                  </button>
+                  <script>
+                      function handleButtonClick(clickedButton) {
+                          // 获取当前按钮组中的所有按钮
+                          const buttons = clickedButton.parentElement.getElementsByClassName('btn');
+
+                          // 移除所有按钮的active类
+                          for (let button of buttons) {
+                              button.classList.remove('active');
+                          }
+
+                          // 为被点击的按钮添加active类
+                          clickedButton.classList.add('active');
+                      }
+                  </script>
               </div>
+
             </div>
           </template>
           <!-- Chart and Static Text -->
