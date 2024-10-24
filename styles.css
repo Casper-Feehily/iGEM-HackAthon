@@ -31,14 +31,16 @@ body {
 }
 
 .btn {
-	padding: 15px 30px;
+	width: 160px;  /* 添加固定宽度 */
+	padding: 15px 10px;  /* 调整水平内边距 */
 	border: 2px solid #ccc;
 	border-radius: 5px;
 	background-color: #fff;
 	cursor: pointer;
 	color: black;
-	/* 添加所有可能发生变化的属性的过渡效果 */
+	white-space: nowrap;  /* 防止文字换行 */
 	transition: all 0.3s ease;
+	font-size: 14px;  /* 统一字体大小 */
 }
 
 /* 悬停状态 */
