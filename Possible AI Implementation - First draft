@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugging Face LLM Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ask the AI something - For API Key Hugging Face API is used</h1>
+    <textarea id="inputText" rows="5" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button onclick="callHuggingFace()">Submit</button>
+
+    <h2>Response:</h2>
+    <div id="response"></div>
+
+    <script>
+        async function callHuggingFace() {
+            const apiKey = 'PlaceholderforyourAPIkey';  // Replace with your Hugging Face API key
+            const inputText = document.getElementById('inputText').value;
+            const modelUrl = 'https://api-inference.huggingface.co/models/gpt2';  // Replace with the model you want to use - GPT2 is a little bit funny to be nice
+            
+            // Show a loading message
+            document.getElementById('response').innerText = "Generating response...";
+
+            try {
+                const response = await fetch(modelUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: inputText,
+                    })
+                });
+                
+                // Check if the response was successful
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('response').innerText = data[0].generated_text;
+                } else {
+                    document.getElementById('response').innerText = "Error: " + response.statusText;
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerText = 'Error: ' + error.message;
+            }
+        }
+    </script>
+
+</body>
+</html>
