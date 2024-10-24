@@ -8,7 +8,7 @@
 /* 当鼠标移动到按钮上时，按钮变为红色 */
 .btn.strongly-disagree:hover {
 	background-color: #BE3D3D; /* 红色 */
-	color: white; /* 可选，改变文字颜色以提高可读性 */
+	color: black; /* 可选，改变文字颜色以提高可读性 */
 	border-color: #BE3D3D;
 }
 
@@ -21,7 +21,7 @@
 
 .btn.disagree:hover {
 	background-color: #D75B5B; /* 浅红色 */
-	color: white; /* 可选 */
+	color: black; /* 可选 */
 	border-color: #D75B5B;
 }
 
@@ -33,7 +33,7 @@
 
 .btn.neutral:hover {
 	background-color: #6090A9; /* 蓝色 */
-	color: white; /* 可选 */
+	color: black; /* 可选 */
 	border-color: #6090A9;
 }
 
@@ -45,7 +45,7 @@
 
 .btn.agree:hover {
 	background-color: #8FCF77; /* 浅绿色 */
-	color: white; /* 可选 */
+	color: black; /* 可选 */
 	border-color: #8FCF77;
 }
 
@@ -57,6 +57,6 @@
 
 .btn.strongly-agree:hover {
 	background-color: #5FB540; /* 深绿色 */
-	color: white; /* 可选 */
+	color: black; /* 可选 */
 	border-color: #5FB540;
 }
