@@ -251,35 +251,35 @@
               <p class="question" x-text="question.text"></p>
               <div class="buttons">
                 <button
-                  class="btn"
+                  class="btn.strongly-disagree"
                   x-bind:class="question.answer === -1 ? 'active' : ''"
                   @click="setAnswer(section, question, -1)"
                 >
                   Strongly disagree
                 </button>
                 <button
-                  class="btn"
+                  class="btn.disagree"
                   x-bind:class="question.answer === -0.5 ? 'active' : ''"
                   @click="setAnswer(section, question, -0.5)"
                 >
                   Disagree
                 </button>
                 <button
-                  class="btn"
+                  class="btn.neutral"
                   x-bind:class="question.answer === 0 ? 'active' : ''"
                   @click="setAnswer(section, question, 0)"
                 >
                   Neutral
                 </button>
-                <button
-                  class="btn"
+                <buttongits
+                  class="btn.agree"
                   x-bind:class="question.answer === 0.5 ? 'active' : ''"
                   @click="setAnswer(section, question, 0.5)"
                 >
                   Agree
-                </button>
+                </buttongits>
                 <button
-                  class="btn"
+                  class="btn.strongly-agree"
                   x-bind:class="question.answer === 1 ? 'active' : ''"
                   @click="setAnswer(section, question, 1)"
                 >
