@@ -9,16 +9,18 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
     <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   </head>
   <body x-data="bodyData">
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.data("bodyData", () => ({
-          setAnswer: (section, question, value) => {
+          setAnswer: function (section, question, value) {
             section.total += value - question.answer;
             question.answer = value;
-            console.log("answer value: " + question.answer);
-            console.log("section total: " + section.total);
+            // Update the graph dynamically after setting an answer
+            this.updateGraph();
           },
           sections: {
             reflectingOnDesign: {
@@ -100,6 +102,8 @@
             },
             anticipatingPositiveAnd: {
               title: "Anticipating Positive and Negative Impacts",
+              description: 'Here we analyze potential positive and negative impacts of the project.',
+
               total: 0,
               questions: [
                 {
@@ -122,6 +126,7 @@
             },
             respondingToHuman: {
               title: "Responding to Human Practices Work",
+              description: 'In this section, the team responds to feedback and adapts.',
               total: 0,
               questions: [
                 {
@@ -144,6 +149,7 @@
             },
             approachingLimitationsWith: {
               title: "Approaching Limitations with Integrity",
+              description: 'This section reviews how limitations were handled with integrity.',
               total: 0,
               questions: [
                 {
@@ -165,7 +171,76 @@
               ],
             },
           },
+          getTotals: function () {
+            const totals = [];
+            for (const sectionKey in this.sections) {
+              const section = this.sections[sectionKey];
+              totals.push(section.total);
+            }
+            return totals;
+          },
+          getCombinedTotal: function () {
+            let combinedTotal = 0;
+            for (const sectionKey in this.sections) {
+              combinedTotal += this.sections[sectionKey].total;
+            }
+            return combinedTotal;
+          },
+          initChart: function () {
+            const ctx = document.getElementById('myRadarChart').getContext('2d');
+            window.myRadarChart = new Chart(ctx, {
+              type: 'radar',
+              data: {
+                labels: [
+                  'Reflecting on Design',
+                  'Exploring and Reflecting',
+                  'Incorporating Perspectives',
+                  'Anticipating Impacts',
+                  'Responding to Human Practices',
+                  'Approaching Limitations'
+                ],
+                datasets: [
+                  {
+                    label: 'User Input',
+                    data: [3,4,0,5,5,5],  // Use Alpine.js data
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                  },
+                  {
+                    label: 'Ai-Evaluation',
+                    data: [3, 3, 4, 4, 5, 4],  // Example data
+                    fill: true,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgb(75, 192, 192)',
+                    pointBackgroundColor: 'rgb(75, 192, 192)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(75, 192, 192)'
+                  }
+                ]
+              },
+              options: {
+                scale: {
+                  ticks: { beginAtZero: true, min: 0, max: 5, stepSize: 1 }
+                }
+              }
+            });
+          },
+          updateGraph: function () {
+            const totals = this.getTotals();  // Get updated totals
+            window.myRadarChart.data.datasets[0].data = this.getTotals();  // Update chart data
+            window.myRadarChart.update();  // Refresh the chart
+          }
         }));
+
+        // Ensure Chart.js is initialized when Alpine.js data is ready
+        document.querySelector('body').setAttribute('x-data', 'bodyData');
+        document.querySelector('body').setAttribute('x-init', 'initChart()');
       });
     </script>
     <div id="content" class="container">
@@ -214,11 +289,22 @@
               </div>
             </div>
           </template>
+          <!-- Chart and Static Text -->
+          <div class="chart-text-container">
+            <!-- Chart container -->
+            <div class="chart-container">
+            </div>
+            <!-- Static Text Box -->
+            <div class="text-box" x-text="section.description">
+            </div>
+          </div>
         </div>
       </template>
-      <div>
-        <p x-text="sections.reflectingOnDesign.total"></p>
+      <div class="container">
+        <p><span x-text="getCombinedTotal()"></span></p>
+        <canvas id="myRadarChart" width="958" height="958"></canvas>
       </div>
     </div>
   </body>
 </html>
+
