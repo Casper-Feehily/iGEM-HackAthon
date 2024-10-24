@@ -10,7 +10,6 @@
     ></script>
     <link rel="stylesheet" href="/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   </head>
   <body x-data="bodyData">
     <script>
@@ -25,7 +24,7 @@
           sections: {
             reflectingOnDesign: {
               title: "Reflecting on Design Decisions",
-          description: 'This section reflects the design process and its alignment with project goals.',
+            description: 'This section reflects the design process and its alignment with project goals.',
               total: 0,
               questions: [
                 {
@@ -292,11 +291,9 @@
           <!-- Chart and Static Text -->
           <div class="chart-text-container">
             <!-- Chart container -->
-            <div class="chart-container">
-            </div>
+            <div class="chart-container"></div>
             <!-- Static Text Box -->
-            <div class="text-box" x-text="section.description">
-            </div>
+            <div class="text-box" x-text="section.description"></div>
           </div>
         </div>
       </template>
@@ -307,4 +304,3 @@
     </div>
   </body>
 </html>
-
