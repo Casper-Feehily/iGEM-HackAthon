@@ -69,12 +69,13 @@
       },
     ]}"
   >
+  <div id="content" class="container">
     <template x-for="section in sections">
-      <div>
+      <div class="section">
         <h2 x-text="section.title"></h2>
         <template x-for="question in section.questions">
-          <div>
-            <p x-text="question.text"></p>
+          <div class="question-group">
+            <p class="question" x-text="question.text"></p>
             <div class="buttons">
               <button
                 class="btn"
@@ -116,7 +117,6 @@
         </template>
       </div>
     </template>
-
-    <div id="content" class="container"></div>
-  </body>
+  </div>
+</body>
 </html>
