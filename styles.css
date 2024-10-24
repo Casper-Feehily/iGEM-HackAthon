@@ -74,63 +74,63 @@ body {
 
 /* 设置 Strongly disagree 按钮的初始状态为白色 */
 .btn.strongly-disagree {
-	background-color: #fff;
+	background-color: #BE3D3D;
 	color: black;
-	border-color: #ccc;
+	border-color: #BE3D3D;
 }
 
 /* 当鼠标移动到按钮上时，按钮变为红色 */
 .btn.strongly-disagree:hover {
-	background-color: #BE3D3D; /* 红色 */
+	background-color: #a83535; /* 红色 */
 	color: black; /* 可选，改变文字颜色以提高可读性 */
-	border-color: #BE3D3D;
+	border-color: #a83535;
 }
 
 /* 其他按钮的初始状态和 hover 状态 */
 .btn.disagree {
-	background-color: #fff;
+	background-color: #D75B5B;
 	color: black;
-	border-color: #ccc;
-}
-
-.btn.disagree:hover {
-	background-color: #D75B5B; /* 浅红色 */
-	color: black; /* 可选 */
 	border-color: #D75B5B;
 }
 
-.btn.neutral {
-	background-color: #fff;
-	color: black;
-	border-color: #ccc;
+.btn.disagree:hover {
+	background-color: #bb4d4d; /* 浅红色 */
+	color: black; /* 可选 */
+	border-color: #bb4d4d;
 }
 
-.btn.neutral:hover {
-	background-color: #6090A9; /* 蓝色 */
-	color: black; /* 可选 */
+.btn.neutral {
+	background-color: #6090A9;
+	color: black;
 	border-color: #6090A9;
 }
 
-.btn.agree {
-	background-color: #fff;
-	color: black;
-	border-color: #ccc;
+.btn.neutral:hover {
+	background-color: #4c8196; /* 蓝色 */
+	color: black; /* 可选 */
+	border-color: #4c8196;
 }
 
-.btn.agree:hover {
-	background-color: #8FCF77; /* 浅绿色 */
-	color: black; /* 可选 */
+.btn.agree {
+	background-color: #8FCF77;
+	color: black;
 	border-color: #8FCF77;
 }
 
+.btn.agree:hover {
+	background-color: #7ab266; /* 浅绿色 */
+	color: black; /* 可选 */
+	border-color: #7ab266;
+}
+
 .btn.strongly-agree {
-	background-color: #fff;
+	background-color: #5FB540;
 	color: black;
-	border-color: #ccc;
+	border-color: #5FB540;
 }
 
 .btn.strongly-agree:hover {
-	background-color: #5FB540; /* 深绿色 */
+	background-color: #4a8d33; /* 深绿色 */
 	color: black; /* 可选 */
-	border-color: #5FB540;
+	border-color: #4a8d33;
 }
