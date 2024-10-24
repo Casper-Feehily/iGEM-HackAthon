@@ -30,82 +30,89 @@ body {
 	gap: 10px;
 }
 
-/* 按钮的基础样式 */
 .btn {
 	padding: 15px 30px;
 	border: 2px solid #ccc;
 	border-radius: 5px;
 	background-color: #fff;
 	cursor: pointer;
-	transition: all 0.3s ease;
 	color: black;
+	/* 添加所有可能发生变化的属性的过渡效果 */
+	transition: all 0.3s ease;
 }
 
-/* 鼠标悬停样式 */
+/* 悬停状态 */
 .btn.strongly-disagree:hover {
 	background-color: #BE3D3D;
 	border-color: #BE3D3D;
+	transform: scale(1.05);
+	box-shadow: 0 2px 8px rgba(190, 61, 61, 0.2);
 }
 
 .btn.disagree:hover {
 	background-color: #D75B5B;
 	border-color: #D75B5B;
+	transform: scale(1.05);
+	box-shadow: 0 2px 8px rgba(215, 91, 91, 0.2);
 }
 
 .btn.neutral:hover {
 	background-color: #6090A9;
 	border-color: #6090A9;
+	transform: scale(1.05);
+	box-shadow: 0 2px 8px rgba(96, 144, 169, 0.2);
 }
 
 .btn.agree:hover {
 	background-color: #8FCF77;
 	border-color: #8FCF77;
+	transform: scale(1.05);
+	box-shadow: 0 2px 8px rgba(143, 207, 119, 0.2);
 }
 
 .btn.strongly-agree:hover {
 	background-color: #5FB540;
 	border-color: #5FB540;
+	transform: scale(1.05);
+	box-shadow: 0 2px 8px rgba(95, 181, 64, 0.2);
 }
 
-/* 按钮激活状态 */
+/* 激活状态 */
 .btn.strongly-disagree.active {
 	background-color: #BE3D3D;
 	border-color: #BE3D3D;
 	color: white;
+	box-shadow: 0 2px 8px rgba(190, 61, 61, 0.2);
 }
 
 .btn.disagree.active {
 	background-color: #D75B5B;
 	border-color: #D75B5B;
 	color: white;
+	box-shadow: 0 2px 8px rgba(215, 91, 91, 0.2);
 }
 
 .btn.neutral.active {
 	background-color: #6090A9;
 	border-color: #6090A9;
 	color: white;
+	box-shadow: 0 2px 8px rgba(96, 144, 169, 0.2);
 }
 
 .btn.agree.active {
 	background-color: #8FCF77;
 	border-color: #8FCF77;
 	color: white;
+	box-shadow: 0 2px 8px rgba(143, 207, 119, 0.2);
 }
 
 .btn.strongly-agree.active {
 	background-color: #5FB540;
 	border-color: #5FB540;
 	color: white;
+	box-shadow: 0 2px 8px rgba(95, 181, 64, 0.2);
 }
 
-/* 确保同一组中只有一个按钮可以处于激活状态 */
-.buttons .btn.active ~ .btn.active {
-	background-color: #fff;
-	color: black;
-	border-color: #ccc;
-}
-
-/* 布局相关样式 */
 .section-container {
 	display: flex;
 	flex-direction: column;
@@ -119,11 +126,11 @@ body {
 }
 
 .chart-container {
-	flex: 0 0 60%; /* Takes 60% of the width */
+	flex: 0 0 60%;
 }
 
 .text-box {
-	flex: 0 0 40%; /* Takes 40% of the width */
+	flex: 0 0 40%;
 	padding: 20px;
 	background-color: #fff;
 	border: 2px solid #ccc;
