@@ -251,35 +251,35 @@
                     <p class="question" x-text="question.text"></p>
                     <div class="buttons">
                         <button
-                                class="btn.strongly-disagree"
+                                class="btn strongly-disagree"
                                 x-bind:class="question.answer === -1 ? 'active' : ''"
                                 @click="setAnswer(section, question, -1)"
                         >
                             Strongly disagree
                         </button>
                         <button
-                                class="btn.disagree"
+                                class="btn disagree"
                                 x-bind:class="question.answer === -0.5 ? 'active' : ''"
                                 @click="setAnswer(section, question, -0.5)"
                         >
                             Disagree
                         </button>
                         <button
-                                class="btn.neutral"
+                                class="btn neutral"
                                 x-bind:class="question.answer === 0 ? 'active' : ''"
                                 @click="setAnswer(section, question, 0)"
                         >
                             Neutral
                         </button>
                         <button
-                                class="btn.agree"
+                                class="btn agree"
                                 x-bind:class="question.answer === 0.5 ? 'active' : ''"
                                 @click="setAnswer(section, question, 0.5)"
                         >
                             Agree
                         </button>
                         <button
-                                class="btn.strongly-agree"
+                                class="btn strongly-agree"
                                 x-bind:class="question.answer === 1 ? 'active' : ''"
                                 @click="setAnswer(section, question, 1)"
                         >
