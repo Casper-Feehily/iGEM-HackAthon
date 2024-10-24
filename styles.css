@@ -45,8 +45,8 @@ body {
 
 /* 悬停状态 */
 .btn.strongly-disagree:hover {
-	background-color: #BE3D3D;
-	border-color: #BE3D3D;
+	background-color: #b02c2c;
+	border-color: #b02c2c;
 	transform: scale(1.05);
 	box-shadow: 0 2px 8px rgba(190, 61, 61, 0.2);
 }
@@ -59,22 +59,22 @@ body {
 }
 
 .btn.neutral:hover {
-	background-color: #6090A9;
-	border-color: #6090A9;
+	background-color: #528798;
+	border-color: #528798;
 	transform: scale(1.05);
 	box-shadow: 0 2px 8px rgba(96, 144, 169, 0.2);
 }
 
 .btn.agree:hover {
-	background-color: #8FCF77;
-	border-color: #8FCF77;
+	background-color: #78b961;
+	border-color: #78b961;
 	transform: scale(1.05);
 	box-shadow: 0 2px 8px rgba(143, 207, 119, 0.2);
 }
 
 .btn.strongly-agree:hover {
-	background-color: #5FB540;
-	border-color: #5FB540;
+	background-color: #418825;
+	border-color: #418825;
 	transform: scale(1.05);
 	box-shadow: 0 2px 8px rgba(95, 181, 64, 0.2);
 }
@@ -88,29 +88,29 @@ body {
 }
 
 .btn.disagree.active {
-	background-color: #D75B5B;
-	border-color: #D75B5B;
+	background-color: #e17171;
+	border-color: #e17171;
 	color: white;
 	box-shadow: 0 2px 8px rgba(215, 91, 91, 0.2);
 }
 
 .btn.neutral.active {
-	background-color: #6090A9;
-	border-color: #6090A9;
+	background-color: #71a4be;
+	border-color: #71a4be;
 	color: white;
 	box-shadow: 0 2px 8px rgba(96, 144, 169, 0.2);
 }
 
 .btn.agree.active {
-	background-color: #8FCF77;
-	border-color: #8FCF77;
+	background-color: #88ce6d;
+	border-color: #88ce6d;
 	color: white;
 	box-shadow: 0 2px 8px rgba(143, 207, 119, 0.2);
 }
 
 .btn.strongly-agree.active {
-	background-color: #5FB540;
-	border-color: #5FB540;
+	background-color: #539f32;
+	border-color: #539f32;
 	color: white;
 	box-shadow: 0 2px 8px rgba(95, 181, 64, 0.2);
 }
@@ -139,4 +139,4 @@ body {
 	border-radius: 8px;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 	font-size: 16px;
-}
+}x
