@@ -1,306 +1,305 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Human Practices Maturity Model Toolkit</title>
     <script
-            defer
-            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-    <link rel="stylesheet" href="/styles.css"/>
+    <link rel="stylesheet" href="/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body x-data="bodyData">
-<script>
-    document.addEventListener("alpine:init", () => {
+  </head>
+  <body x-data="bodyData">
+    <script>
+      document.addEventListener("alpine:init", () => {
         Alpine.data("bodyData", () => ({
-            setAnswer: function (section, question, value) {
-                section.total += value - question.answer;
-                question.answer = value;
-                // Update the graph dynamically after setting an answer
-                this.updateGraph();
+          setAnswer: function (section, question, value) {
+            section.total += value - question.answer;
+            question.answer = value;
+            // Update the graph dynamically after setting an answer
+            this.updateGraph();
+          },
+          sections: {
+            reflectingOnDesign: {
+              title: "Reflecting on Design Decisions",
+              description:
+                "This section reflects the design process and its alignment with project goals.",
+              total: 0,
+              questions: [
+                {
+                  text: "My team has spoken with many stakeholders with a variety of backgrounds and perspectives.",
+                  answer: null,
+                },
+                {
+                  text: "Our project is holistically designed around feedback we received from stakeholders.",
+                  answer: null,
+                },
+                {
+                  text: "My team engaged with stakeholders early in the project, and continued to engage with them iteratively throughout the project.",
+                  answer: null,
+                },
+                {
+                  text: "We have extensively documented our work with stakeholders.",
+                  answer: null,
+                },
+              ],
             },
-            sections: {
-                reflectingOnDesign: {
-                    title: "Reflecting on Design Decisions",
-                    description: 'This section reflects the design process and its alignment with project goals.',
-                    total: 0,
-                    questions: [
-                        {
-                            text: "The project design closely aligns with the initial goals and objectives set by the team",
-                            answer: null,
-                        },
-                        {
-                            text: "The team had clear opportunities to reflect on the social responsibilities of the project at every stage.",
-                            answer: null,
-                        },
-                        {
-                            text: "Reflection on the project’s social impact led to meaningful changes in its design or direction.",
-                            answer: null,
-                        },
-                        {
-                            text: "The team thoroughly evaluated the effectiveness of integrating human practices into the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Human practices goals were clearly defined and aligned with the project objectives from the beginning.",
-                            answer: null,
-                        },
-                        {
-                            text: "Ethical considerations and potential risks were addressed at every stage of the project.",
-                            answer: null,
-                        },
-                    ],
+            exploringAndReflecting: {
+              title: "Exploring and Reflecting on Context Beyond the Lab",
+              description:
+                "In this section, we consider impacts beyond the lab environment.",
+              total: 0,
+              questions: [
+                {
+                  text: "We have a built a detailed understanding of the context surrounding our project.",
+                  answer: null,
                 },
-                exploringAndReflecting: {
-                    title: "Exploring and Reflecting on Context Beyond the Lab",
-                    description: 'In this section, we consider impacts beyond the lab environment.',
-                    total: 0,
-                    questions: [
-                        {
-                            text: "Responsibility and ethical considerations were introduced early in the project timeline.",
-                            answer: null,
-                        },
-                        {
-                            text: "The team conducted formal assessments or research on the social, environmental, and ethical impacts of the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "The potential long-term social, environmental, or economic impacts were effectively assessed and considered.",
-                            answer: null,
-                        },
-                        {
-                            text: "Mechanisms for ensuring project responsibility were regularly updated based on new insights or feedback.",
-                            answer: null,
-                        },
-                    ],
+                {
+                  text: "We have conducted primary research to further explore our project’s context.",
+                  answer: null,
                 },
-                incorporatingDiversePerspectives: {
-                    title: "Incorporating Diverse Perspectives",
-                    description: 'This section focuses on engaging with stakeholders from diverse backgrounds.',
-                    total: 0,
-                    questions: [
-                        {
-                            text: "The team engaged with a diverse range of stakeholders throughout the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Relevant stakeholders were identified, and their feedback was considered valuable for improving the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Interactions with stakeholders were well-documented, and their feedback was actively incorporated into the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "The project evolved significantly based on feedback from external stakeholders or communities.",
-                            answer: null,
-                        },
-                    ],
+                {
+                  text: "We have used our knowledge of our project’s context to inform the design of the project.",
+                  answer: null,
                 },
-                anticipatingPositiveAnd: {
-                    title: "Anticipating Positive and Negative Impacts",
-                    description: 'Here we analyze potential positive and negative impacts of the project.',
-
-                    total: 0,
-                    questions: [
-                        {
-                            text: "The project has clear components that are expected to positively impact society or the environment.",
-                            answer: null,
-                        },
-                        {
-                            text: "The project design effectively promotes the core values that iGEM stands for (e.g., responsibility, innovation, societal benefit).",
-                            answer: null,
-                        },
-                        {
-                            text: "Potential negative impacts were identified early, and effective mitigation strategies were developed and applied",
-                            answer: null,
-                        },
-                        {
-                            text: "The broader societal, environmental, or ethical implications of the project were thoroughly analyzed.",
-                            answer: null,
-                        },
-                    ],
+                {
+                  text: "We have collected ideas about how to improve the context around our project, such as suggestions for regulation.",
+                  answer: null,
                 },
-                respondingToHuman: {
-                    title: "Responding to Human Practices Work",
-                    description: 'In this section, the team responds to feedback and adapts.',
-                    total: 0,
-                    questions: [
-                        {
-                            text: "The team responded flexibly to changes and feedback throughout the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Feedback from stakeholders led to specific and concrete improvements in the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Creative or innovative approaches were introduced to ensure responsibility and ethical consideration in the project.",
-                            answer: null,
-                        },
-                        {
-                            text: "Ongoing mechanisms are in place to ensure that the project has a positive social impact during both design and execution.",
-                            answer: null,
-                        },
-                    ],
-                },
-                approachingLimitationsWith: {
-                    title: "Approaching Limitations with Integrity",
-                    description: 'This section reviews how limitations were handled with integrity.',
-                    total: 0,
-                    questions: [
-                        {
-                            text: "The team critically evaluated the limitations of their human practices approach and worked to address them.",
-                            answer: null,
-                        },
-                        {
-                            text: "Gaps or limitations in the integration of human practices were effectively identified and addressed by the team.",
-                            answer: null,
-                        },
-                        {
-                            text: "The team’s human practices activities could serve as a clear and useful model for future iGEM teams.",
-                            answer: null,
-                        },
-                        {
-                            text: "The team can clearly demonstrate the impact of external references (such as literature or expert advice) on the project’s design and execution.",
-                            answer: null,
-                        },
-                    ],
-                },
+              ],
             },
-            getTotals: function () {
-                const totals = [];
-                for (const sectionKey in this.sections) {
-                    const section = this.sections[sectionKey];
-                    totals.push(section.total);
-                }
-                return totals;
+            incorporatingDiversePerspectives: {
+              title: "Incorporating Diverse Perspectives",
+              description:
+                "This section focuses on engaging with stakeholders from diverse backgrounds.",
+              total: 0,
+              questions: [
+                {
+                  text: "We have mapped out all the stakeholders that might be affected by our project, including some who may not be affected and some who may be critical of our project.",
+                  answer: null,
+                },
+                {
+                  text: "We have clearly documented our approach to identifying stakeholders and our rationale behind choosing who to include.",
+                  answer: null,
+                },
+                {
+                  text: "We have engaged with stakeholders in a participative and cooperative way, allowing them to participate in the project and to see how their feedback changed project design.",
+                  answer: null,
+                },
+                {
+                  text: "We have clearly documented our decisions on what feedback to incorporate into our project, as well as what we chose to leave out of our project.",
+                  answer: null,
+                },
+              ],
             },
-            getCombinedTotal: function () {
-                let combinedTotal = 0;
-                for (const sectionKey in this.sections) {
-                    combinedTotal += this.sections[sectionKey].total;
-                }
-                return combinedTotal;
+            anticipatingPositiveAnd: {
+              title: "Anticipating Positive and Negative Impacts",
+              description:
+                "Here we analyze potential positive and negative impacts of the project.",
+              total: 0,
+              questions: [
+                {
+                  text: "Our team has anticipated specific positive and negative impacts of our project along many different dimensions (economic, social, scientific, educational, etc.).",
+                  answer: null,
+                },
+                {
+                  text: "We have taken actions to mitigate the risks associated with our project.",
+                  answer: null,
+                },
+                {
+                  text: "We have considered in what ways our project might be misused, and have altered the design or developed countermeasures to stop this from happening.",
+                  answer: null,
+                },
+                {
+                  text: "We have engaged with stakeholders to find alternatives that would reduce risk while increasing benefits of our project.",
+                  answer: null,
+                },
+              ],
             },
-            initChart: function () {
-                const ctx = document.getElementById('myRadarChart').getContext('2d');
-                window.myRadarChart = new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: [
-                            'Reflecting on Design',
-                            'Exploring and Reflecting',
-                            'Incorporating Perspectives',
-                            'Anticipating Impacts',
-                            'Responding to Human Practices',
-                            'Approaching Limitations'
-                        ],
-                        datasets: [
-                            {
-                                label: 'User Input',
-                                data: [3, 4, 0, 5, 5, 5],  // Use Alpine.js data
-                                fill: true,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgb(54, 162, 235)',
-                                pointBackgroundColor: 'rgb(54, 162, 235)',
-                                pointBorderColor: '#fff',
-                                pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgb(54, 162, 235)'
-                            },
-                            {
-                                label: 'Ai-Evaluation',
-                                data: [3, 3, 4, 4, 5, 4],  // Example data
-                                fill: true,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgb(75, 192, 192)',
-                                pointBackgroundColor: 'rgb(75, 192, 192)',
-                                pointBorderColor: '#fff',
-                                pointHoverBackgroundColor: '#fff',
-                                pointHoverBorderColor: 'rgb(75, 192, 192)'
-                            }
-                        ]
-                    },
-                    options: {
-                        scale: {
-                            ticks: {beginAtZero: true, min: 0, max: 5, stepSize: 1}
-                        }
-                    }
-                });
+            respondingToHuman: {
+              title: "Responding to Human Practices Work",
+              description:
+                "In this section, the team responds to feedback and adapts.",
+              total: 0,
+              questions: [
+                {
+                  text: "Our human practices work is well documented.",
+                  answer: null,
+                },
+                {
+                  text: "Our human practices work is deeply integrated into our project.",
+                  answer: null,
+                },
+                {
+                  text: "Our human practices work was incorporated into the project from the earliest stages of design through to the end.",
+                  answer: null,
+                },
+                {
+                  text: "Our human practices work plays a substantial role in the team’s scientific, safety, technical, and communication decisions.",
+                  answer: null,
+                },
+              ],
             },
-            updateGraph: function () {
-                const totals = this.getTotals();  // Get updated totals
-                window.myRadarChart.data.datasets[0].data = this.getTotals();  // Update chart data
-                window.myRadarChart.update();  // Refresh the chart
+            approachingLimitationsWith: {
+              title: "Approaching Limitations with Integrity",
+              description:
+                "This section reviews how limitations were handled with integrity.",
+              total: 0,
+              questions: [
+                {
+                  text: "We have thoroughly examined our project’s strengths and weaknesses.",
+                  answer: null,
+                },
+                {
+                  text: "We have examined the future opportunities and threats our project may create in the future.",
+                  answer: null,
+                },
+                {
+                  text: "We have proposed alternatives to work around our project’s limitations.",
+                  answer: null,
+                },
+                {
+                  text: "We have a roadmap for adapting the project to opportunities and threats.",
+                  answer: null,
+                },
+              ],
+            },
+          },
+          getTotals: function () {
+            const totals = [];
+            for (const sectionKey in this.sections) {
+              const section = this.sections[sectionKey];
+              totals.push(section.total);
             }
+            return totals;
+          },
+          getCombinedTotal: function () {
+            let combinedTotal = 0;
+            for (const sectionKey in this.sections) {
+              combinedTotal += this.sections[sectionKey].total;
+            }
+            return combinedTotal;
+          },
+          initChart: function () {
+            const ctx = document
+              .getElementById("myRadarChart")
+              .getContext("2d");
+            window.myRadarChart = new Chart(ctx, {
+              type: "radar",
+              data: {
+                labels: [
+                  "Reflecting on Design",
+                  "Exploring and Reflecting",
+                  "Incorporating Perspectives",
+                  "Anticipating Impacts",
+                  "Responding to Human Practices",
+                  "Approaching Limitations",
+                ],
+                datasets: [
+                  {
+                    label: "User Input",
+                    data: [3, 4, 0, 5, 5, 5], // Use Alpine.js data
+                    fill: true,
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                    borderColor: "rgb(54, 162, 235)",
+                    pointBackgroundColor: "rgb(54, 162, 235)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgb(54, 162, 235)",
+                  },
+                  {
+                    label: "Ai-Evaluation",
+                    data: [3, 3, 4, 4, 5, 4], // Example data
+                    fill: true,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgb(75, 192, 192)",
+                    pointBackgroundColor: "rgb(75, 192, 192)",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "rgb(75, 192, 192)",
+                  },
+                ],
+              },
+              options: {
+                scale: {
+                  ticks: { beginAtZero: true, min: 0, max: 5, stepSize: 1 },
+                },
+              },
+            });
+          },
+          updateGraph: function () {
+            const totals = this.getTotals(); // Get updated totals
+            window.myRadarChart.data.datasets[0].data = this.getTotals(); // Update chart data
+            window.myRadarChart.update(); // Refresh the chart
+          },
         }));
 
         // Ensure Chart.js is initialized when Alpine.js data is ready
-        document.querySelector('body').setAttribute('x-data', 'bodyData');
-        document.querySelector('body').setAttribute('x-init', 'initChart()');
-    });
-</script>
-<div id="content" class="container">
-    <template x-for="section in sections">
+        document.querySelector("body").setAttribute("x-data", "bodyData");
+        document.querySelector("body").setAttribute("x-init", "initChart()");
+      });
+    </script>
+    <div id="content" class="container">
+      <template x-for="section in sections">
         <div class="section">
-            <h2 x-text="section.title"></h2>
-            <template x-for="question in section.questions">
-                <div class="question-group">
-                    <p class="question" x-text="question.text"></p>
-                    <div class="buttons">
-                        <button
-                                class="btn strongly-disagree"
-                                x-bind:class="question.answer === -1 ? 'active' : ''"
-                                @click="setAnswer(section, question, -1)"
-                        >
-                            Strongly disagree
-                        </button>
-                        <button
-                                class="btn disagree"
-                                x-bind:class="question.answer === -0.5 ? 'active' : ''"
-                                @click="setAnswer(section, question, -0.5)"
-                        >
-                            Disagree
-                        </button>
-                        <button
-                                class="btn neutral"
-                                x-bind:class="question.answer === 0 ? 'active' : ''"
-                                @click="setAnswer(section, question, 0)"
-                        >
-                            Neutral
-                        </button>
-                        <button
-                                class="btn agree"
-                                x-bind:class="question.answer === 0.5 ? 'active' : ''"
-                                @click="setAnswer(section, question, 0.5)"
-                        >
-                            Agree
-                        </button>
-                        <button
-                                class="btn strongly-agree"
-                                x-bind:class="question.answer === 1 ? 'active' : ''"
-                                @click="setAnswer(section, question, 1)"
-                        >
-                            Strongly agree
-                        </button>
-                    </div>
-                </div>
-            </template>
-            <!-- Chart and Static Text -->
-            <div class="chart-text-container">
-                <!-- Chart container -->
-                <div class="chart-container"></div>
-                <!-- Static Text Box -->
-                <div class="text-box" x-text="section.description"></div>
+          <h2 x-text="section.title"></h2>
+          <template x-for="question in section.questions">
+            <div class="question-group">
+              <p class="question" x-text="question.text"></p>
+              <div class="buttons">
+                <button
+                  class="btn strongly-disagree"
+                  x-bind:class="question.answer === -1 ? 'active' : ''"
+                  @click="setAnswer(section, question, -1)"
+                >
+                  Strongly disagree
+                </button>
+                <button
+                  class="btn disagree"
+                  x-bind:class="question.answer === -0.5 ? 'active' : ''"
+                  @click="setAnswer(section, question, -0.5)"
+                >
+                  Disagree
+                </button>
+                <button
+                  class="btn neutral"
+                  x-bind:class="question.answer === 0 ? 'active' : ''"
+                  @click="setAnswer(section, question, 0)"
+                >
+                  Neutral
+                </button>
+                <button
+                  class="btn agree"
+                  x-bind:class="question.answer === 0.5 ? 'active' : ''"
+                  @click="setAnswer(section, question, 0.5)"
+                >
+                  Agree
+                </button>
+                <button
+                  class="btn strongly-agree"
+                  x-bind:class="question.answer === 1 ? 'active' : ''"
+                  @click="setAnswer(section, question, 1)"
+                >
+                  Strongly agree
+                </button>
+              </div>
             </div>
+          </template>
+          <!-- Chart and Static Text -->
+          <div class="chart-text-container">
+            <!-- Chart container -->
+            <div class="chart-container"></div>
+            <!-- Static Text Box -->
+            <div class="text-box" x-text="section.description"></div>
+          </div>
         </div>
-    </template>
-    <div class="container">
+      </template>
+      <div class="container">
         <p><span x-text="getCombinedTotal()"></span></p>
         <canvas id="myRadarChart" width="958" height="958"></canvas>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>
