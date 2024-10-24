@@ -3,15 +3,19 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: auto;
 	background-color: #f4f4f4;
+	padding-top: 20px;
 }
 .container {
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 100px;
 }
 .question {
 	font-size: 1.5em;
-	margin-bottom: 20px;
+	margin-top: 20px;
 }
 .question-group {
 	margin-bottom: 40px;
