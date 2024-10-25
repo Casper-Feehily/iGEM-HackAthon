@@ -264,35 +264,35 @@
                   <button
                           class="btn strongly-disagree"
                           onclick="handleButtonClick(this)"
-                          @click="setAnswer(section, question, -1)"
+                          @click="setAnswer(section, question, 0)"
                   >
                       Strongly disagree
                   </button>
                   <button
                           class="btn disagree"
                           onclick="handleButtonClick(this)"
-                          @click="setAnswer(section, question, -0.5)"
+                          @click="setAnswer(section, question, 0.5)"
                   >
                       Disagree
                   </button>
                   <button
                           class="btn neutral"
                           onclick="handleButtonClick(this)"
-                          @click="setAnswer(section, question, 0)"
+                          @click="setAnswer(section, question, 1)"
                   >
                       Neutral
                   </button>
                   <button
                           class="btn agree"
                           onclick="handleButtonClick(this)"
-                          @click="setAnswer(section, question, 0.5)"
+                          @click="setAnswer(section, question, 1.5)"
                   >
                       Agree
                   </button>
                   <button
                           class="btn strongly-agree"
                           onclick="handleButtonClick(this)"
-                          @click="setAnswer(section, question, 1)"
+                          @click="setAnswer(section, question, 2)"
                   >
                       Strongly agree
                   </button>
