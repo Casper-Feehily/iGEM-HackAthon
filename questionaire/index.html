@@ -33,19 +33,23 @@
               total: 0,
               questions: [
                 {
-                  text: "My team has spoken with many stakeholders with a variety of backgrounds and perspectives.",
+                  text: "My team has spoken and collaborated with several stakeholders with a variety of relevant backgrounds and perspectives. Collaborative efforts have been made to improve the project design within the engineering cycle.",
                   answer: null,
                 },
                 {
-                  text: "Our project is holistically designed around feedback we received from stakeholders.",
+                  text: "Our project takes a holistic approach in terms of the engineering design cycle, integrating several pieces of feedback we received from stakeholders.",
                   answer: null,
                 },
                 {
-                  text: "My team engaged with stakeholders early in the project, and continued to engage with them iteratively throughout the project.",
+                  text: "My team engaged with stakeholders early in the engineering cycle, and continued to engage and collaborate with them iteratively throughout the project.",
                   answer: null,
                 },
                 {
-                  text: "We have extensively documented our work with stakeholders.",
+                  text: "My team has considered the social-environmental context of the project and discussed these aspects with relevant stakeholders to gain further insight. ",
+                  answer: null,
+                },
+                {
+                  text: "We have extensively documented our meetings, feedback, and collaborative work completed with stakeholders.",
                   answer: null,
                 },
               ],
@@ -57,19 +61,23 @@
               total: 0,
               questions: [
                 {
-                  text: "We have a built a detailed understanding of the context surrounding our project.",
+                  text: "We have a built a complete and detailed understanding of the context surrounding our project.  ",
                   answer: null,
                 },
                 {
-                  text: "We have conducted primary research to further explore our project’s context.",
+                  text: "We have conducted both extensive secondary and primary research to further explore our project’s context.",
                   answer: null,
                 },
                 {
-                  text: "We have used our knowledge of our project’s context to inform the design of the project.",
+                  text: "We have reflected on and implemented our knowledge of the project’s context to inform and support design decisions. ",
                   answer: null,
                 },
                 {
-                  text: "We have collected ideas about how to improve the context around our project, such as suggestions for regulation.",
+                  text: "We have built a thorough understanding between the relations between the social, environmental, and economic contexts and the project.   ",
+                  answer: null,
+                },
+                {
+                  text: "Reflecting on our understanding of the project context, we have formed ideas on how to  improve relevant regulation to better support implemtation and safety of the project. ",
                   answer: null,
                 },
               ],
@@ -81,19 +89,19 @@
               total: 0,
               questions: [
                 {
-                  text: "We have mapped out all the stakeholders that might be affected by our project, including some who may not be affected and some who may be critical of our project.",
+                  text: "We have mapped out all the stakeholders that might be affected by our project, including some who may not be affected and some who may be critical to our project.",
                   answer: null,
                 },
                 {
-                  text: "We have clearly documented our approach to identifying stakeholders and our rationale behind choosing who to include.",
+                  text: "We have clearly documented our approach to identifying relevant stakeholders and our rationale behind choosing who to include. ",
                   answer: null,
                 },
                 {
-                  text: "We have engaged with stakeholders in a participative and cooperative way, allowing them to participate in the project and to see how their feedback changed project design.",
+                  text: "We have engaged with stakeholders in a colaborative manner, allowing them to participate in the project and to witness how their feedback affected the project design.",
                   answer: null,
                 },
                 {
-                  text: "We have clearly documented our decisions on what feedback to incorporate into our project, as well as what we chose to leave out of our project.",
+                  text: "We have clearly documented our decisions on what feedback to incorporate into our project, as well as what we chose to leave out of our project, including rationale for these decisions. ",
                   answer: null,
                 },
               ],
@@ -105,15 +113,15 @@
               total: 0,
               questions: [
                 {
-                  text: "Our team has anticipated specific positive and negative impacts of our project along many different dimensions (economic, social, scientific, educational, etc.).",
+                  text: "Our team has anticipated specific positive and negative impacts of our project along many different dimensions (economic, social, scientific, ethical, environmental, etc.).",
                   answer: null,
                 },
                 {
-                  text: "We have taken actions to mitigate the risks associated with our project.",
+                  text: "Our team has identified potential risks within negative impacts of the projects and considered actions to mitigate any such risks. ",
                   answer: null,
                 },
                 {
-                  text: "We have considered in what ways our project might be misused, and have altered the design or developed countermeasures to stop this from happening.",
+                  text: "We have considered in what ways our project might be misused, and have altered the design or developed countermeasures to prevent this from happening.",
                   answer: null,
                 },
                 {
@@ -129,7 +137,7 @@
               total: 0,
               questions: [
                 {
-                  text: "Our human practices work is well documented.",
+                  text: "Our human practices work is well documented and reflected upon. ",
                   answer: null,
                 },
                 {
@@ -157,7 +165,7 @@
                   answer: null,
                 },
                 {
-                  text: "We have examined the future opportunities and threats our project may create in the future.",
+                  text: "We have examined the future opportunities and possible threats our project may create in the future.",
                   answer: null,
                 },
                 {
@@ -253,7 +261,6 @@
       <template x-for="section in sections">
         <div class="section">
           <h2 x-text="section.title"></h2>
-          <p x-text="section.description"></p>
           <template x-for="question in section.questions">
             <div class="question-group">
               <p class="question" x-text="question.text"></p>
