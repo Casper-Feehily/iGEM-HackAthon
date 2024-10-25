@@ -245,7 +245,15 @@
         document.querySelector("body").setAttribute("x-init", "initChart()");
       });
     </script>
+
+
     <div id="content" class="container">
+
+      <!-- Description -->
+      <h1>Human Practices Maturity Model Questionairre</h1>
+      <p>Complete the quiz with your team to learn about the maturity level of your Human Practices efforts.</p>
+      <p>Be honest — the grading is for your benefit!</p>
+
       <template x-for="section in sections">
         <div class="section">
           <h2 x-text="section.title"></h2>
@@ -256,7 +264,6 @@
                   <button
                           class="btn strongly-disagree"
                           onclick="handleButtonClick(this)"
-                          x-bind:class="question.answer === -1 ? 'active' : ''"
                           @click="setAnswer(section, question, -1)"
                   >
                       Strongly disagree
@@ -264,7 +271,6 @@
                   <button
                           class="btn disagree"
                           onclick="handleButtonClick(this)"
-                          x-bind:class="question.answer === -0.5 ? 'active' : ''"
                           @click="setAnswer(section, question, -0.5)"
                   >
                       Disagree
@@ -272,7 +278,6 @@
                   <button
                           class="btn neutral"
                           onclick="handleButtonClick(this)"
-                          x-bind:class="question.answer === 0 ? 'active' : ''"
                           @click="setAnswer(section, question, 0)"
                   >
                       Neutral
@@ -280,7 +285,6 @@
                   <button
                           class="btn agree"
                           onclick="handleButtonClick(this)"
-                          x-bind:class="question.answer === 0.5 ? 'active' : ''"
                           @click="setAnswer(section, question, 0.5)"
                   >
                       Agree
@@ -288,7 +292,6 @@
                   <button
                           class="btn strongly-agree"
                           onclick="handleButtonClick(this)"
-                          x-bind:class="question.answer === 1 ? 'active' : ''"
                           @click="setAnswer(section, question, 1)"
                   >
                       Strongly agree
@@ -315,8 +318,6 @@
           <div class="chart-text-container">
             <!-- Chart container -->
             <div class="chart-container"></div>
-            <!-- Static Text Box -->
-            <div class="text-box" x-text="section.description"></div>
           </div>
         </div>
       </template>
