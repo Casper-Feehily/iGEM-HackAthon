@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Text Grader and Suggestions</title>
+    <title>AI Text Grader with Six Criteria</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,8 +38,8 @@
 </head>
 <body>
 
-    <h1>AI Text Grader and Suggestions</h1>
-    <textarea id="inputText" rows="5" placeholder="Enter your text here..."></textarea>
+    <h1>AI Text Grader for Six Criteria</h1>
+    <textarea id="inputText" rows="5" placeholder="Enter your text or URL here..."></textarea>
     <br>
     <button onclick="evaluateText()">Submit</button>
 
@@ -55,60 +55,59 @@
             const inputText = document.getElementById('inputText').value;
             document.getElementById('response').innerText = "Evaluating text...";
 
+            const criteria = [
+                "Reflecting on design decisions",
+                "Exploring and reflecting on context beyond the lab",
+                "Incorporating diverse perspectives",
+                "Anticipating positive and negative impacts",
+                "Responding to human practices work",
+                "Approaching limitations with integrity"
+            ];
+
+            const grades = [];
+            const suggestions = [];
+
             try {
-                // First API Call - Get an AI evaluation (using a summarization model as a proxy)
-                const evaluationResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        inputs: inputText
-                    })
-                });
-
-                let evaluationGrade, feedbackText;
-
-                if (evaluationResponse.ok) {
-                    const evaluationData = await evaluationResponse.json();
-                    const evaluationSummary = evaluationData[0].summary_text || ""; // Assume model returns a summary
-
-                    // Simple scoring based on length and wording - Customize as needed
-                    evaluationGrade = Math.min(Math.floor(evaluationSummary.split(" ").length / 5), 10);
-
-                    // Second API Call - Get specific suggestions or improvements
-                    const suggestionResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
+                for (const criterion of criteria) {
+                    // Make API request to evaluate text based on each criterion
+                    const evaluationResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${apiKey}`,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            inputs: "Improve this text: " + inputText
+                            inputs: `Evaluate this text on: ${criterion}. Text: ${inputText}`
                         })
                     });
 
-                    if (suggestionResponse.ok) {
-                        const suggestionData = await suggestionResponse.json();
-                        feedbackText = suggestionData[0].summary_text || "Could use a better structure.";
+                    if (evaluationResponse.ok) {
+                        const evaluationData = await evaluationResponse.json();
+                        const evaluationSummary = evaluationData[0].summary_text || ""; // Use summary text from model
+
+                        // Determine grade based on summary length or keyword match (for demonstration)
+                        const grade = Math.min(Math.floor(evaluationSummary.split(" ").length / 5), 10);
+                        grades.push(grade);
+
+                        // Store suggestion or feedback text for improvement
+                        suggestions.push(evaluationSummary);
                     } else {
-                        feedbackText = "Error generating feedback.";
+                        grades.push(0);
+                        suggestions.push("Error generating feedback.");
                     }
-                } else {
-                    evaluationGrade = 0;
-                    feedbackText = "Error generating evaluation.";
                 }
 
-                // Update UI with results
+                // Display grading and feedback for each criterion
                 let responseHtml = `<strong>Grading Results:</strong><ul>`;
-                responseHtml += `<li><strong>Grammar and Sound:</strong> Grade ${evaluationGrade}/10</li>`;
-                responseHtml += `<p>AI Feedback: ${feedbackText}</p>`;
+                criteria.forEach((criterion, index) => {
+                    responseHtml += `<li><strong>${criterion}:</strong> Grade ${grades[index]}/10</li>`;
+                    responseHtml += `<p>AI Feedback: ${suggestions[index]}</p>`;
+                });
                 responseHtml += `</ul>`;
                 document.getElementById('response').innerHTML = responseHtml;
 
-                // Plotting bar chart
-                plotChart(["Grammar and Sound"], [evaluationGrade]);
+                // Plotting the grades in a bar chart
+                plotChart(criteria, grades);
 
             } catch (error) {
                 console.error('Error:', error);
