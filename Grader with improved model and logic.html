@@ -8,6 +8,9 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         textarea {
             width: 100%;
@@ -24,21 +27,32 @@
             background-color: #45a049;
         }
         #response, #chartContainer {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
             margin-top: 20px;
             padding: 15px;
             background-color: #f1f1f1;
             border-radius: 5px;
         }
+        #chartContainer {
+            display: flex;
+            justify-content: center;
+        }
         canvas {
             margin-top: 20px;
+            width: 80vw;
             max-width: 600px;
+            height: 80vh; /* Make the chart taller */
+            max-height: 600px;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
 </head>
 <body>
-
-    <h1>AI Text Grader for Six Criteria</h1>
+    <h1>Input Area for the AI Text Grader for HP Maturity Model</h1>
+    <hr>
+    <h2>Input your Wiki text</h2>
     <textarea id="inputText" rows="5" placeholder="Enter your text or URL here..."></textarea>
     <br>
     <button onclick="evaluateText()">Submit</button>
@@ -69,7 +83,6 @@
 
             try {
                 for (const criterion of criteria) {
-                    // Make API request to evaluate text based on each criterion
                     const evaluationResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
                         method: 'POST',
                         headers: {
@@ -83,13 +96,9 @@
 
                     if (evaluationResponse.ok) {
                         const evaluationData = await evaluationResponse.json();
-                        const evaluationSummary = evaluationData[0].summary_text || ""; // Use summary text from model
-
-                        // Determine grade based on summary length or keyword match (for demonstration)
+                        const evaluationSummary = evaluationData[0].summary_text || "";
                         const grade = Math.min(Math.floor(evaluationSummary.split(" ").length / 5), 10);
                         grades.push(grade);
-
-                        // Store suggestion or feedback text for improvement
                         suggestions.push(evaluationSummary);
                     } else {
                         grades.push(0);
@@ -97,7 +106,6 @@
                     }
                 }
 
-                // Display grading and feedback for each criterion
                 let responseHtml = `<strong>Grading Results:</strong><ul>`;
                 criteria.forEach((criterion, index) => {
                     responseHtml += `<li><strong>${criterion}:</strong> Grade ${grades[index]}/10</li>`;
@@ -106,8 +114,7 @@
                 responseHtml += `</ul>`;
                 document.getElementById('response').innerHTML = responseHtml;
 
-                // Plotting the grades in a bar chart
-                plotChart(criteria, grades);
+                plotRadarChart(criteria, grades);
 
             } catch (error) {
                 console.error('Error:', error);
@@ -115,31 +122,45 @@
             }
         }
 
-        function plotChart(labels, grades) {
+        function plotRadarChart(labels, grades) {
             const ctx = document.getElementById('gradeChart').getContext('2d');
             new Chart(ctx, {
-                type: 'bar',
+                type: 'radar',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: 'Grades',
                         data: grades,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
+                        pointBackgroundColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
-                        y: {
+                        r: {
                             beginAtZero: true,
-                            max: 10
+                            min: 0,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1
+                            }
                         }
+                    },
+                    elements: {
+                        line: {
+                            borderWidth: 2
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
                     }
                 }
             });
         }
     </script>
-
 </body>
 </html>
