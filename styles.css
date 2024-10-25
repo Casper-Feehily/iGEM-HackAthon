@@ -129,6 +129,12 @@ body {
 
 .chart-container {
 	flex: 0 0 60%;
+	width: 50%;
+}
+
+.chart-body-container {
+	max-height: 90vh;
+	margin-x: auto;
 }
 
 .text-box {
