@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Grader and Suggestions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #response, #chartContainer {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+        canvas {
+            margin-top: 20px;
+            max-width: 600px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
+</head>
+<body>
+
+    <h1>AI Text Grader and Suggestions</h1>
+    <textarea id="inputText" rows="5" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button onclick="evaluateText()">Submit</button>
+
+    <h2>Response:</h2>
+    <div id="response"></div>
+    <div id="chartContainer">
+        <canvas id="gradeChart"></canvas>
+    </div>
+
+    <script>
+        async function evaluateText() {
+            const apiKey = 'API-Key-Placeholder'; // Replace with your Hugging Face API key
+            const inputText = document.getElementById('inputText').value;
+            document.getElementById('response').innerText = "Evaluating text...";
+
+            try {
+                // First API Call - Get an AI evaluation (using a summarization model as a proxy)
+                const evaluationResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        inputs: inputText
+                    })
+                });
+
+                let evaluationGrade, feedbackText;
+
+                if (evaluationResponse.ok) {
+                    const evaluationData = await evaluationResponse.json();
+                    const evaluationSummary = evaluationData[0].summary_text || ""; // Assume model returns a summary
+
+                    // Simple scoring based on length and wording - Customize as needed
+                    evaluationGrade = Math.min(Math.floor(evaluationSummary.split(" ").length / 5), 10);
+
+                    // Second API Call - Get specific suggestions or improvements
+                    const suggestionResponse = await fetch("https://api-inference.huggingface.co/models/facebook/bart-large-cnn", {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            inputs: "Improve this text: " + inputText
+                        })
+                    });
+
+                    if (suggestionResponse.ok) {
+                        const suggestionData = await suggestionResponse.json();
+                        feedbackText = suggestionData[0].summary_text || "Could use a better structure.";
+                    } else {
+                        feedbackText = "Error generating feedback.";
+                    }
+                } else {
+                    evaluationGrade = 0;
+                    feedbackText = "Error generating evaluation.";
+                }
+
+                // Update UI with results
+                let responseHtml = `<strong>Grading Results:</strong><ul>`;
+                responseHtml += `<li><strong>Grammar and Sound:</strong> Grade ${evaluationGrade}/10</li>`;
+                responseHtml += `<p>AI Feedback: ${feedbackText}</p>`;
+                responseHtml += `</ul>`;
+                document.getElementById('response').innerHTML = responseHtml;
+
+                // Plotting bar chart
+                plotChart(["Grammar and Sound"], [evaluationGrade]);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        function plotChart(labels, grades) {
+            const ctx = document.getElementById('gradeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Grades',
+                        data: grades,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
