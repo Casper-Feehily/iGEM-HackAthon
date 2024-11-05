@@ -9,7 +9,7 @@ For this, you need an API-Key from the Web-site Hugging Face Inference. You can 
 Download and run the respective Toolkit html files. For the User-Self-Evaluation you also need to download the styles.css file.
 
 ## Authors and acknowledgment
-Writen by Luke Wiebe, Li Mengxi, and Davin Höllmann
+Writen by Luke Wiebe, Casper, and Davin Höllmann
 
 ## License
 Demo Project for the iGEM-2024 - Hackathon
